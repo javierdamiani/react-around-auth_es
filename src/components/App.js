@@ -178,11 +178,7 @@ function App() {
         <Header handleSignOut={handleSignOut} email={email} />
 
         <Routes>
-          <Route
-            path="/"
-            exact
-            element={<ProtectedRoute loggedIn={loggedIn} />}
-          >
+          <Route path="/" element={<ProtectedRoute loggedIn={loggedIn} />}>
             <Route
               path="/"
               element={
@@ -198,12 +194,8 @@ function App() {
               }
             />
           </Route>
-          <Route exact path="/signup" element={<Register />} />
-          <Route
-            exact
-            path="/signin"
-            element={<Login handleLogin={handleLogin} />}
-          />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
         </Routes>
 
         <InfoTooltip />
