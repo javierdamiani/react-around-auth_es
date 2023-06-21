@@ -196,11 +196,10 @@ function App() {
           </Route>
           <Route path="/signup" element={<Register />} />
           <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
+          <Route path="*" element={<Navigate to="/signup" />} />
         </Routes>
 
         <InfoTooltip />
-
-        <Footer />
 
         <EditProfilePopup
           isOpen={isEditProfilePopUpOpen}
@@ -232,6 +231,7 @@ function App() {
           isOpen={isSelectedCardOpen}
           onClose={closeAllPopups}
         />
+        <Footer />
       </CurrentUserContext.Provider>
     </div>
   );

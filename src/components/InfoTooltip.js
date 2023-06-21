@@ -4,7 +4,7 @@ import denied from "../images/denied.jpg";
 
 const InfoTooltip = ({ error, infoToolOpen, handleClose }) => {
   return (
-    <div className={`popup ${infoToolOpen && "popup_opened"}`}>
+    <div className={`popup ${infoToolOpen && "popup__opened"}`}>
       <div className="popup__container infoTooltip">
         <button
           alt="Icono de cerrar"
