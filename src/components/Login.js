@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import * as auth from "../utils/auth";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InfoTooltip from "./InfoTooltip";
 
 const Login = ({ handleLogin }) => {
   const [formData, setFormData] = React.useState({});
-  const [infoToolOpen, setInfoToolOpen] = React.useState(false);
+  const [infoToolOpen, setInfoToolOpen] = React.useState(null);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,14 +32,13 @@ const Login = ({ handleLogin }) => {
         }
       })
       .catch((err) => {
+        setInfoToolOpen(true);
+        setFormData({ email: "", password: "" });
+        navigate("/signin", { state: { error: err } });
+        handleLogin();
         console.log(err);
       });
   };
-  useEffect(() => {
-    if (location.state === "success") {
-      setInfoToolOpen(true);
-    }
-  }, [location]);
 
   return (
     <>
@@ -74,7 +72,7 @@ const Login = ({ handleLogin }) => {
         </form>
       </div>
       <InfoTooltip
-        error={false}
+        error={true}
         infoToolOpen={infoToolOpen}
         handleClose={handleCloseInfoTool}
       />
